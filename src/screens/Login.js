@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView } from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
 import { withOrientation } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
+import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 
 export default class Login extends React.Component{
     
@@ -27,7 +28,31 @@ export default class Login extends React.Component{
         }
     }
 
-    
+    async loginWithFacebook(){
+
+        const {type,token} = await Expo.Facebook.loginWithReadPermissionAsync
+        ('2720592521541777',{permissions:['public_profile']})
+
+        if(type == 'success'){
+            const credential = firebase.auth.FacebookAuthProvider.credential(token)
+            firebase.auth().signInWithCredential(credential).catch({error})
+            console.log(error)
+        }
+    }
+
+    async loginWithGoogle(){
+
+    }
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged((user)=> {
+            if(user != null){
+                console.log(user)
+            }
+        })
+    }
+
+
     render(){
         const {navigate} = this.props.navigation
         return(
@@ -82,13 +107,22 @@ export default class Login extends React.Component{
                         onPress={() => this.loginUser() } 
                         style={styles.buttonText}>Sign In</Text>
                 </View>
+                <View style={styles.buttonStyle}>
+                    <Text
+                        onPress={()=>{}}
+                        >Google SignIn</Text>
+                </View>
+                <View style={styles.buttonStyle}>
+                    <Text
+                        onPress={()=>this.loginWithFacebook}
+                        >Facebook SignIn</Text>
+                </View>
                 
                 <Text 
                 onPress={()=>navigate('Register')}
                 style={styles.newUser}>Not a member? Sign Up</Text>
 
             </View>
-            
         )
     }
 }
@@ -155,6 +189,6 @@ const styles = StyleSheet.create({
         color:"white",
         fontFamily:"SemiBold",
         alignSelf:"center",
-        paddingVertical:50,
+        paddingVertical:20,
     }
 });
