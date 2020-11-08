@@ -4,7 +4,8 @@ import Icon from '@expo/vector-icons/AntDesign';
 import { withOrientation } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
-import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
+import * as Facebook from 'expo-facebook';
+
 
 export default class Login extends React.Component{
     
@@ -30,14 +31,15 @@ export default class Login extends React.Component{
 
     async loginWithFacebook(){
 
-        const {type,token} = await Expo.Facebook.loginWithReadPermissionAsync
-        ('2720592521541777',{permissions:['public_profile']})
+        await Facebook.initializeAsync({appID:'2720592521541777',appName:'reviewApp'})
+        const {type,token} = await Facebook.logInWithReadPermissionsAsync({ permissions:['public_profile', 'email']})
 
         if(type == 'success'){
             const credential = firebase.auth.FacebookAuthProvider.credential(token)
             firebase.auth().signInWithCredential(credential).catch({error})
             console.log(error)
         }
+
     }
 
     async loginWithGoogle(){
@@ -114,10 +116,9 @@ export default class Login extends React.Component{
                 </View>
                 <View style={styles.buttonStyle}>
                     <Text
-                        onPress={()=>this.loginWithFacebook}
+                        onPress={()=>this.loginWithFacebook()}
                         >Facebook SignIn</Text>
                 </View>
-                
                 <Text 
                 onPress={()=>navigate('Register')}
                 style={styles.newUser}>Not a member? Sign Up</Text>
