@@ -15,25 +15,23 @@ if (!firebase.apps.length) {
 
 export default class App extends React.Component {
   state={
-    isFontloaded:false
+    isFontloaded:false,
   }
   
   async componentDidMount(){
-    
     await Font.loadAsync({
       'SemiBold' : require('./src/fonts/Montserrat-SemiBold.otf'),
       'Medium' : require('./src/fonts/Montserrat-Medium.otf'),
       'Regular': require('./src/fonts/Montserrat-Regular.otf'),
-    }).then( () => this.setState({isFontloaded:true}))
-    
+    });
+    this.setState({isFontloaded:true});
   }
-
 
   render(){
     return (
       <View>
-        {/* <Feed/> */}
-        <SplashScreen/>
+        <Feed/>
+        {/* <SplashScreen/> */}
         {/* <AppNavigator/> */}
       </View>
     );

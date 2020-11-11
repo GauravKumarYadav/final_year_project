@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView } from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
-import { withOrientation } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import * as firebase from 'firebase';
 import * as Facebook from 'expo-facebook';
