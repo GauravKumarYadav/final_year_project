@@ -7,7 +7,8 @@ import * as firebase from 'firebase';
 import {firebaseConfig} from './src/config/config';
 
 import SplashScreen from './src/screens/SplashScreen'
-import Feed from './src/screens/feed';
+import FeedScreen from './src/screens/feed';
+import Stories from './src/screens/stories'
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -29,8 +30,8 @@ export default class App extends React.Component {
 
   render(){
     return (
-      <View>
-        <Feed/>
+      <View style={styles.container}>
+        <FeedScreen/>
         {/* <SplashScreen/> */}
         {/* <AppNavigator/> */}
       </View>
@@ -39,10 +40,6 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: {display:'flex',},
+
 });
