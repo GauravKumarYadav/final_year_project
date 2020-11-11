@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AppNavigator from './src/navigators/Navigator';
@@ -7,8 +6,12 @@ import {AppLoading} from 'expo';
 import * as firebase from 'firebase';
 import {firebaseConfig} from './src/config/config';
 
-firebase.initializeApp(firebaseConfig);
+import SplashScreen from './src/screens/SplashScreen'
+import Feed from './src/screens/feed';
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default class App extends React.Component {
   state={
@@ -28,8 +31,11 @@ export default class App extends React.Component {
 
   render(){
     return (
-      // <AppNavigator/>
-      (this.state.isFontloaded === true) ? (<AppNavigator/>) : (<AppLoading/>)
+      <View>
+        {/* <Feed/> */}
+        <SplashScreen/>
+        {/* <AppNavigator/> */}
+      </View>
     );
   }
 }
