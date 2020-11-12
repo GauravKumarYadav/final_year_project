@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import {firebaseConfig} from './src/config/config';
 
 import SplashScreen from './src/screens/SplashScreen'
-import FeedScreen from './src/screens/feed';
+import FeedScreen from './src/screens/FeedScreen';
 import Stories from './src/screens/stories'
 
 if (!firebase.apps.length) {

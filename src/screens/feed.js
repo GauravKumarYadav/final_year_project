@@ -6,7 +6,7 @@ import Stories from './stories';
 const { width } = Dimensions.get('window');
 const height = width * 0.9; // 90 %
 
-export default class FeedScreen extends Component {
+export default class Feed extends Component {
     state = {
         active: 0,
     }
@@ -19,61 +19,55 @@ export default class FeedScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                {/*multiple feed scroll view start */}
-                <ScrollView>
-                    <View style={styles.storyWrapper}>
-                        <Stories/>
+            <View>
+                {/* feed's header profie photo , profile name , settings button Icon */}
+                <View style={styles.headerWrapper}>
+                    <View style={styles.headerLeftWrapper}>
+                        <Image style={styles.profileThumb} source={require('../images/food.png')} />
+                        <Text style={styles.profileTitle}>Profile_Name</Text>
                     </View>
-                    {/* feed's header profie photo , profile name , settings button Icon */}
-                    <View style={styles.headerWrapper}>
-                        <View style={styles.headerLeftWrapper}>
-                            <Image style={styles.profileThumb} source={require('../images/food.png')} />
-                            <Text style={styles.profileTitle}>Profile_Name</Text>
-                        </View>
-                        <View>
-                            <Icon name="ellipsis-v" size={24} style={styles.feedSetting} />
-                        </View>
+                    <View>
+                        <Icon name="ellipsis-v" size={24} style={styles.feedSetting} />
                     </View>
-                    {/* feed's multiple image horizontal scroll */}
-                    <View style={styles.feedImageContainer}>
-                        <ScrollView
-                            horizontal
-                            pagingEnabled
-                            onScroll={this.change}
-                            showsHorizontalScrollIndicator={false}
-                            style={styles.scrollView}>
-                            {
-                                images.map((item, index) => (
-                                    <Image
-                                        key={index}
-                                        style={styles.feedImage}
-                                        source={{ uri: item }} />
-                                ))
-                            }
-                        </ScrollView>{/* feed's multiple image horizontal scroll ends here  */}
-                        {/* multiple image pagination */}
-                        <View style={styles.pagination}>
-                            {
-                                images.map((i, k) => (
-                                    <Icon key={k} name="circle" size={8} style={k == this.state.active ? styles.pagingActive : styles.pagingIcon} />
-                                ))
-                            }
-                        </View>
+                </View>
+                {/* feed's multiple image horizontal scroll */}
+                <View style={styles.feedImageContainer}>
+                    <ScrollView
+                        horizontal
+                        pagingEnabled
+                        onScroll={this.change}
+                        showsHorizontalScrollIndicator={false}
+                        style={styles.scrollView}>
+                        {
+                            images.map((item, index) => (
+                                <Image
+                                    key={index}
+                                    style={styles.feedImage}
+                                    source={{ uri: item }} />
+                            ))
+                        }
+                    </ScrollView>{/* feed's multiple image horizontal scroll ends here  */}
+                    {/* multiple image pagination */}
+                    <View style={styles.pagination}>
+                        {
+                            images.map((i, k) => (
+                                <Icon key={k} name="circle" size={8} style={k == this.state.active ? styles.pagingActive : styles.pagingIcon} />
+                            ))
+                        }
                     </View>
-                    {/* footer Icons :- like , comment , send , bookmark   */}
-                    <View style={styles.feedFooter}>
-                        <View style={styles.footerLeftWrapper}>
-                            <Icon name="heart" size={30} style={styles.feedFooterIcon} />
-                            <Icon name="comments" size={30} style={styles.feedFooterIcon} />
-                            <Icon name="paper-plane" size={25} style={styles.feedFooterIcon} />
-                        </View>
-                        <View>
-                            <Icon name="bookmark" size={30} />
-                        </View>
+                </View>
+                {/* footer Icons :- like , comment , send , bookmark   */}
+                <View style={styles.feedFooter}>
+                    <View style={styles.footerLeftWrapper}>
+                        <Icon name="heart" size={30} style={styles.feedFooterIcon} />
+                        <Icon name="comments" size={30} style={styles.feedFooterIcon} />
+                        <Icon name="paper-plane" size={25} style={styles.feedFooterIcon} />
                     </View>
-                    <View style={styles.underLine} />
-                </ScrollView>{/* multiple feed scroll view ends   */}
+                    <View>
+                        <Icon name="bookmark" size={30} />
+                    </View>
+                </View>
+                <View style={styles.underLine} /> 
             </View>
         )
     }

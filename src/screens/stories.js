@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const images=[
     'https://images.pexels.com/photos/1097456/pexels-photo-1097456.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -29,7 +28,7 @@ export class Stories extends Component {
                         <Text >Stories</Text>
                     </View>
                     <View>
-                        <Text >▶ Watch All</Text>
+                        <Text ><Text style={{fontSize:18}} >▶</Text> Watch All</Text>
                     </View>
                 </View>
                 <ScrollView
