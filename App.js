@@ -1,42 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AppNavigator from './src/navigators/Navigator';
-import * as Font from 'expo-font';
-import {AppLoading} from 'expo';
-import * as firebase from 'firebase';
-import {firebaseConfig} from './src/config/config';
-
-import SplashScreen from './src/screens/SplashScreen'
+import { mapping, dark } from '@eva-design/eva';
+import { ApplicationProvider } from 'react-native-ui-kitten';
+import MapScreen from './src/screens/map';
 import FeedScreen from './src/screens/FeedScreen';
-import Stories from './src/screens/stories'
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+import Navigation from './src/navigation/Navigation';
 
 export default class App extends React.Component {
-  state={
-    isFontloaded:false,
-  }
-  
-  async componentDidMount(){
-    await Font.loadAsync({
-      'SemiBold' : require('./src/fonts/Montserrat-SemiBold.otf'),
-      'Medium' : require('./src/fonts/Montserrat-Medium.otf'),
-      'Regular': require('./src/fonts/Montserrat-Regular.otf'),
-    });
-    this.setState({isFontloaded:true});
+
+  // render(){
+  //   return (
+  //     <View style={styles.container}>
+  //       <FeedScreen/>
+  //     </View>
+  //   );
+  // }
+  render() {
+    return (
+      <ApplicationProvider mapping={mapping} theme={dark}>
+        <Navigation />
+      </ApplicationProvider>
+    )
   }
 
-  render(){
-    return (
-      <View style={styles.container}>
-        <FeedScreen/>
-        {/* <SplashScreen/> */}
-        {/* <AppNavigator/> */}
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({

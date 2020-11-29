@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Stories from './stories';
 
 const { width } = Dimensions.get('window');
 const height = width * 0.9; // 90 %
