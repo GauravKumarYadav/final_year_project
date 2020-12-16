@@ -22,10 +22,8 @@ export default class App extends React.Component {
       </ApplicationProvider>
     )
   }
-
 }
 
 const styles = StyleSheet.create({
   container: {display:'flex',},
-
 });
